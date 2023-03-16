@@ -43,7 +43,7 @@ public class StudentDAO {
 
     //tim theo id
     public Student getById(String id) {
-        final String sql = "SELECT * FROM `students` WHERE  `id` = '%s'" + id;
+        final String sql = "SELECT * FROM `students` WHERE  `id` = " + id;
         Student s = null;
 
         try {
@@ -99,7 +99,7 @@ public class StudentDAO {
             throw new RuntimeException("Khong co sinh vien hop le!");
         }
 
-        final String sql = String.format("DELETE FROM `students` WHERE `id` = '%s'", id);
+        final String sql = String.format("DELETE FROM `students` WHERE `id` = "+id);
         try {
             Connection connection = MyConnection.getConnection();
             Statement statement = connection.createStatement();
@@ -122,7 +122,7 @@ public class StudentDAO {
                 throw new RuntimeException("Khong co sinh vien hop le!");
             }
 
-            final String sql = String.format("UPDATE `students` SET `id='%s'`full_name`='%s',`gender`='%d',`student_date`='%s',`address`='%s',`phone`='%s', `email`='%s', `gpa`='%f' WHERE `id` = '%s'",
+            final String sql = String.format("UPDATE `students` SET `id='%s',`full_name`='%s',`gender`='%d',`student_date`='%s',`address`='%s',`phone`='%s', `email`='%s', `gpa`='%f' WHERE `id` = '%s'",
                     student.getId(), student.getFullname(), student.getGender(), student.getDate(), student.getAddress(), student.getPhone(), student.getEmail(), student.getGpa(), id
             );
             try {
